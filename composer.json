@@ -1,0 +1,20 @@
+{
+    "name": "liuyuanjun/aliyun",
+    "description": "Aliyun Utils",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yuanjun Liu",
+            "email": "6879391@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "aliyuncs/oss-sdk-php": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "liuyuanjun\\aliyun\\": "src/"
+        }
+    }
+}
