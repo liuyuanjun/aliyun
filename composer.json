@@ -12,6 +12,9 @@
         "php": ">=7.0",
         "aliyuncs/oss-sdk-php": "^2.3"
     },
+    "require-dev": {
+        "yiisoft/yii2": "*"
+    },
     "autoload": {
         "psr-4": {
             "liuyuanjun\\aliyun\\": "src/"
