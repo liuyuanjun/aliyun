@@ -131,4 +131,16 @@ class OSS extends Component
         return $this->getOssClient()->copyObject($this->bucket, $fromObject, $toBucket, $toObject, $options);
     }
 
+    /**
+     * 判断是否存在
+     * @param string $object
+     * @param null|array $options
+     * @return bool
+     * @throws Exception
+     */
+    public function isExists($object, $options = NULL)
+    {
+        return $this->getOssClient()->doesObjectExist($this->bucket, $object, $options);
+    }
+
 }
