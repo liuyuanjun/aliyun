@@ -30,10 +30,40 @@ class RDCSecurityConfig
 {
 
     /**
+     * 按照环境解析
+     * @var bool|string
+     */
+    protected static $parseByEnv = false;
+
+    /**
+     * 缺省环境列表
+     * @var array
+     */
+    protected static $envOptions = ['dev', 'test', 'prod'];
+
+    /**
      * @var array 配置变量
      */
     protected static $configVars;
 
+
+    /**
+     * 设置按环境解析
+     *
+     * @param string $env 当前环境
+     * @param array $envOptions 所有环境可选项
+     * @throws \Exception
+     */
+    public static function parseByEnv($env, array $envOptions = [])
+    {
+        if (!empty($envOptions)) {
+            static::$envOptions = $envOptions;
+        }
+        if (!in_array($env, static::$envOptions)) {
+            throw new \Exception('Unknown ENV.');
+        }
+        static::$parseByEnv = $env;
+    }
 
     /**
      * 载入配置文件
@@ -54,6 +84,17 @@ class RDCSecurityConfig
         foreach ($lines as $line) {
             if (!static::isComment($line) && strpos($line, '=') !== false) {
                 static::parseLine($line);
+            }
+        }
+        if (static::$parseByEnv) {
+            foreach (static::$configVars as $k => $v) {
+                if ($k === static::$parseByEnv && is_array($v)) {
+                    foreach ($v as $k2 => $v2) {
+                        static::$configVars[$k2] = $v2;
+                    }
+                } elseif (in_array($k, static::$envOptions)) {
+                    unset(static::$envOptions[$k]);
+                }
             }
         }
         return static::$configVars;
