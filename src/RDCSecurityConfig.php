@@ -33,7 +33,7 @@ class RDCSecurityConfig
      * 按照环境解析
      * @var bool|string
      */
-    protected static $parseByEnv = false;
+    protected static $env = false;
 
     /**
      * 缺省环境列表
@@ -54,7 +54,7 @@ class RDCSecurityConfig
      * @param array $envOptions 所有环境可选项
      * @throws \Exception
      */
-    public static function parseByEnv($env, array $envOptions = [])
+    public static function setEnv($env, array $envOptions = [])
     {
         if (!empty($envOptions)) {
             static::$envOptions = $envOptions;
@@ -62,7 +62,7 @@ class RDCSecurityConfig
         if (!in_array($env, static::$envOptions)) {
             throw new \Exception('Unknown ENV.');
         }
-        static::$parseByEnv = $env;
+        static::$env = $env;
     }
 
     /**
@@ -86,9 +86,9 @@ class RDCSecurityConfig
                 static::parseLine($line);
             }
         }
-        if (static::$parseByEnv) {
+        if (static::$env) {
             foreach (static::$configVars as $k => $v) {
-                if ($k === static::$parseByEnv && is_array($v)) {
+                if ($k === static::$env && is_array($v)) {
                     foreach ($v as $k2 => $v2) {
                         static::$configVars[$k2] = $v2;
                     }
