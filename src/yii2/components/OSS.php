@@ -62,6 +62,21 @@ class OSS extends Component
     }
 
     /**
+     * 提取Url里的 object name
+     * @param string $url
+     * @param bool $strict 只有比对相同Url前缀的才返回
+     * @return string
+     */
+    public function getObjectNameFromUrl($url, $strict = true)
+    {
+        $parseUrl = parse_url($url);
+        if ($strict && $parseUrl['host'] != parse_url($this->cdnUrlPrefix)['host']) {
+            return false;
+        }
+        return ltrim($parseUrl['path'], '/');
+    }
+
+    /**
      * 字符串上传
      *
      * @param string $object
