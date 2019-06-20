@@ -7,7 +7,7 @@ use yii\base\Component;
 use yii\base\Exception;
 
 /**
- * 阿里OSS
+ * 阿里OSS Yii2 组件
  *
  * @author liuyuanjun
  */

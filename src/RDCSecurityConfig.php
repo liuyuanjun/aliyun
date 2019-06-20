@@ -23,8 +23,7 @@ namespace liuyuanjun\aliyun;
  * 如果需要加载根目录 rdc_security_config.properties 以外的文件，用 RdcSecurityConfig::load('file')
  * 可以使用 Yii Alias
  *
- * @author liuyuanjun
- * @package common\helpers
+ * @author liuyuanjun <6879391@qq.com>
  */
 class RDCSecurityConfig
 {
