@@ -58,7 +58,8 @@ class OSS extends Component
      */
     public function cdnUrl($object)
     {
-        return rtrim($this->cdnUrlPrefix, '/') . '/' . ltrim($object, '/');
+        $object = trim($object);
+        return $object ? rtrim($this->cdnUrlPrefix, '/') . '/' . ltrim($object, '/') : '';
     }
 
     /**
