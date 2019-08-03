@@ -91,8 +91,9 @@ class RDCSecurityConfig
                     foreach ($v as $k2 => $v2) {
                         static::$configVars[$k2] = $v2;
                     }
+                    unset(static::$configVars[$k]);
                 } elseif (in_array($k, static::$envOptions)) {
-                    unset(static::$envOptions[$k]);
+                    unset(static::$configVars[$k]);
                 }
             }
         }
