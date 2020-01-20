@@ -63,6 +63,17 @@ class OSS extends Component
     }
 
     /**
+     * 去掉url,返回object
+     * @param $url
+     * @return string
+     * @author Yuanjun.Liu <6879391@qq.com>
+     */
+    public function stripUrl($url)
+    {
+        return ltrim(parse_url($url, PHP_URL_PATH), '/');
+    }
+
+    /**
      * 提取Url里的 object name
      * @param string $url
      * @param bool $strict 只有比对相同Url前缀的才返回
